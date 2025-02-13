@@ -1,0 +1,176 @@
+body {
+    font-family: 'wingdings', system-ui, -apple-system, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #2b5876 0%, #4e4376 100%);
+    transition: background 0.5s ease;
+}
+
+body.break-mode {
+    background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
+}
+
+.container {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.timer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 2rem 0;
+}
+
+.timer {
+    font-size: 7rem;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.wingding-timer {
+    font-family: 'Wingdings', sans-serif;
+    font-weight: 300;
+    color: #2b5876;
+    font-size: 8rem;
+}
+
+.numeric-timer {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 300;
+    color: #4e4376;
+    font-size: 6rem;
+}
+
+.break-mode .wingding-timer {
+    color: #134e5e;
+}
+
+.break-mode .numeric-timer {
+    color: #71b280;
+}
+
+.controls button {
+    font-size: 1.1rem;
+    margin: 0 0.5rem;
+    padding: 0.8rem 2rem;
+    cursor: pointer;
+    background: linear-gradient(to right, #2b5876, #4e4376);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.controls button.reset {
+    background: linear-gradient(to right, #ff6b6b, #ff8e8e);
+}
+
+.controls button.reset:hover {
+    background: linear-gradient(to right, #ff5252, #ff7676);
+    transform: translateY(-2px);
+}
+
+.controls button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.controls button#mode-toggle {
+    background: linear-gradient(to right, #4e4376, #2b5876);
+}
+
+.break-mode .controls button#mode-toggle {
+    background: linear-gradient(to right, #134e5e, #71b280);
+}
+
+.controls button#mode-toggle:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+#status-text {
+    font-size: 1.2rem;
+    color: #4e4376;
+    margin-top: 1.5rem;
+    font-weight: 500;
+}
+
+.break-mode #status-text {
+    color: #134e5e;
+}
+
+.title-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.numeric-title {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: #4e4376;
+    margin: 0;
+}
+
+.wingding-title {
+    font-family: 'Wingdings', sans-serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: #2b5876;
+    margin: 0;
+}
+
+.break-mode .wingding-title {
+    color: #134e5e;
+}
+
+.break-mode .numeric-title {
+    color: #71b280;
+}
+
+.status-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.numeric-status {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #4e4376;
+    margin: 0;
+}
+
+.wingding-status {
+    font-family: 'Wingdings', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #2b5876;
+    margin: 0;
+}
+
+.break-mode .wingding-status {
+    color: #134e5e;
+}
+
+.break-mode .numeric-status {
+    color: #71b280;
+} 
+} 
