@@ -32,6 +32,33 @@
             </div>
         </div>
     </div>
+    <div id="cycle-count">Completed Cycles: 0</div>
     <script src="script.js"></script>
+    <script>
+        function saveCycleCount(count) {
+            localStorage.setItem('cycleCount', count.toString());
+        }
+
+        function incrementCycle() {
+            const currentCount = getCycleCount();
+            const newCount = currentCount + 1;
+            saveCycleCount(newCount);
+            updateDisplay(newCount);
+        }
+
+        function updateDisplay(count) {
+            const displayElement = document.getElementById('cycle-count');
+            const emoji = count === 0 ? '⭕' : '🙆🏼'.repeat(count);  // Use ⭕ for zero, otherwise repeat 🙆🏼
+            displayElement.textContent = `Completed Cycles: ${emoji}`;
+        }
+
+        function initializeCycleCount() {
+            const count = getCycleCount();
+            updateDisplay(count);
+        }
+
+        // Call this when the page loads
+        document.addEventListener('DOMContentLoaded', initializeCycleCount);
+    </script>
 </body>
 </html> 
