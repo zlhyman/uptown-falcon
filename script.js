@@ -17,15 +17,17 @@ function updateDisplay() {
     const seconds = timeLeft % 60;
     const timeString = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     
-    // Update both display elements
+    // Update all display elements
     document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
     document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
     document.getElementById('wingding-minutes').textContent = minutes.toString().padStart(2, '0');
     document.getElementById('wingding-seconds').textContent = seconds.toString().padStart(2, '0');
     
-    // Update the document title with the time and current mode
-    const mode = isWorkTime ? 'Work' : 'Break';
-    document.title = `(${timeString}) ${mode} - Pomodoro Timer`;
+    // Update both status texts
+    document.getElementById('status-text').textContent = isWorkTime ? 'Work Time' : 'Break Time';
+    document.getElementById('wingding-status-text').textContent = isWorkTime ? 'Work Time' : 'Break Time';
+    
+    document.title = `(${timeString}) ${isWorkTime ? 'Work' : 'Break'} - Pomodoro Timer`;
 }
 
 function switchMode() {
@@ -64,6 +66,9 @@ function startTimer() {
             clearInterval(timerId);
             timerId = null;
             playNotification();
+            if (isWorkTime) {  // Only increment when completing work session
+                incrementCycle();
+            }
             switchMode();
         }
     }, 1000);

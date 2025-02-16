@@ -1,5 +1,5 @@
 body {
-    font-family: 'wingdings', system-ui, -apple-system, sans-serif;
+    font-family: system-ui, -apple-system, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -173,4 +173,4 @@ body.break-mode {
 .break-mode .numeric-status {
     color: #71b280;
 } 
-} 
+ 
