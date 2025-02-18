@@ -16,11 +16,13 @@ body.break-mode {
 .container {
     text-align: center;
     background-color: rgba(255, 255, 255, 0.95);
-    padding: 3rem;
+    padding: 2rem;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
+    max-width: 90vw;
+    box-sizing: border-box;
 }
 
 .timer-container {
@@ -31,7 +33,7 @@ body.break-mode {
 }
 
 .timer {
-    font-size: 7rem;
+    font-size: clamp(3rem, 10vw, 7rem);
     margin: 0;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -40,7 +42,7 @@ body.break-mode {
     font-family: 'Wingdings', sans-serif;
     font-weight: 300;
     color: #2b5876;
-    font-size: 8rem;
+    font-size: clamp(4rem, 12vw, 8rem);
 }
 
 .numeric-timer {
@@ -58,9 +60,20 @@ body.break-mode {
     color: #71b280;
 }
 
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    padding: 0.5rem;
+}
+
 .controls button {
+    flex: 1;
+    min-width: 140px;
+    max-width: 200px;
+    margin: 0.25rem;
     font-size: 1.1rem;
-    margin: 0 0.5rem;
     padding: 0.8rem 2rem;
     cursor: pointer;
     background: linear-gradient(to right, #2b5876, #4e4376);
@@ -172,5 +185,41 @@ body.break-mode {
 
 .break-mode .numeric-status {
     color: #71b280;
+}
+
+.cycle-count {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 1rem;
+    color: #4e4376;
+    margin-top: 1rem;
+    font-weight: 500;
+}
+
+.break-mode .cycle-count {
+    color: #71b280;
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1.5rem;
+    }
+    
+    .controls {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .controls button {
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+
+    .numeric-title {
+        font-size: 2rem;
+    }
+
+    .wingding-title {
+        font-size: 2.5rem;
+    }
 } 
  

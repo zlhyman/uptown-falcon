@@ -12,6 +12,29 @@ const modeToggleButton = document.getElementById('mode-toggle');
 const WORK_TIME = 25 * 60; // 25 minutes in seconds
 const BREAK_TIME = 5 * 60; // 5 minutes in seconds
 
+// Add cycle count functions
+function saveCycleCount(count) {
+    localStorage.setItem('cycleCount', count.toString());
+}
+
+function getCycleCount() {
+    const count = localStorage.getItem('cycleCount');
+    return count ? parseInt(count) : 0;
+}
+
+function updateCycleDisplay(count) {
+    const displayElement = document.getElementById('cycle-count');
+    const emoji = count === 0 ? '⭕' : '🙆🏼'.repeat(count);
+    displayElement.textContent = `Completed Cycles: ${emoji}`;
+}
+
+function incrementCycle() {
+    const currentCount = getCycleCount();
+    const newCount = currentCount + 1;
+    saveCycleCount(newCount);
+    updateCycleDisplay(newCount);
+}
+
 function updateDisplay() {
     const minutes = Math.floor(timeLeft / 60);
     const seconds = timeLeft % 60;
@@ -33,7 +56,8 @@ function updateDisplay() {
 function switchMode() {
     isWorkTime = !isWorkTime;
     timeLeft = isWorkTime ? WORK_TIME : BREAK_TIME;
-    statusText.textContent = isWorkTime ? 'Work Time' : 'Break Time';
+    document.body.classList.toggle('break-mode');
+    modeToggleButton.textContent = isWorkTime ? 'Switch to Break Mode' : 'Switch to Work Mode';
     updateDisplay();
 }
 
@@ -43,19 +67,14 @@ function toggleMode() {
         timerId = null;
         startButton.textContent = 'Start';
     }
-    
-    isWorkTime = !isWorkTime;
-    timeLeft = isWorkTime ? WORK_TIME : BREAK_TIME;
-    statusText.textContent = isWorkTime ? 'Work Time' : 'Break Time';
-    modeToggleButton.textContent = isWorkTime ? 'Switch to Break Mode' : 'Switch to Work Mode';
-    updateDisplay();
+    switchMode();
 }
 
 function startTimer() {
     if (timerId !== null) return;
     
     if (!timeLeft) {
-        timeLeft = WORK_TIME;
+        timeLeft = isWorkTime ? WORK_TIME : BREAK_TIME;
     }
 
     timerId = setInterval(() => {
@@ -81,7 +100,8 @@ function resetTimer() {
     timerId = null;
     isWorkTime = true;
     timeLeft = WORK_TIME;
-    statusText.textContent = 'Work Time';
+    document.body.classList.remove('break-mode');
+    modeToggleButton.textContent = 'Switch to Break Mode';
     startButton.textContent = 'Start';
     updateDisplay();
 }
@@ -91,6 +111,7 @@ function playNotification() {
     audio.play();
 }
 
+// Event Listeners
 startButton.addEventListener('click', () => {
     if (timerId === null) {
         startTimer();
@@ -102,9 +123,11 @@ startButton.addEventListener('click', () => {
 });
 
 resetButton.addEventListener('click', resetTimer);
-
 modeToggleButton.addEventListener('click', toggleMode);
 
-// Initialize the display
-timeLeft = WORK_TIME;
-updateDisplay(); 
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    timeLeft = WORK_TIME;
+    updateDisplay();
+    updateCycleDisplay(getCycleCount());
+}); 
