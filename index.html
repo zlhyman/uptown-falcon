@@ -57,6 +57,11 @@
             updateDisplay(count);
         }
 
+        function getCycleCount() {
+            const count = localStorage.getItem('cycleCount');
+            return count ? parseInt(count) : 0;
+        }
+
         // Call this when the page loads
         document.addEventListener('DOMContentLoaded', initializeCycleCount);
     </script>
